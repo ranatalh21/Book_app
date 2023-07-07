@@ -31,8 +31,11 @@ import com.example.book_app.Models.DataModel;
 import com.example.book_app.R;
 import com.example.book_app.activities.AddActivity;
 import com.example.book_app.activities.CommentaActivity;
+import com.example.book_app.activities.FcmNotificationSender;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,9 +55,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private Context context;
     private List<DataModel> dataClassList;
 
+    FirebaseAuth auth;
+
     public MyAdapter(Context context, List<DataModel> dataClassList) {
         this.context = context;
         this.dataClassList = dataClassList;
+        auth = FirebaseAuth.getInstance();
     }
 
     @NonNull
@@ -69,6 +75,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         Glide.with(context).load(dataClassList.get(position).getDataImage()).into(holder.recImage);
         holder.recName.setText(dataClassList.get(position).getDataName());
         holder.recDesc.setText(dataClassList.get(position).getDataDesc());
+
+
+        isLike(dataClassList.get(holder.getAdapterPosition()).getKey(),holder.ImageLike);
+        noLike(holder.like,dataClassList.get(holder.getAdapterPosition()).getKey());
 
 
 
@@ -210,15 +220,27 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             }
         });
 
+        holder.ImageLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (holder.ImageLike.getTag().equals("like")){
+                    Log.d("khjhgjhg", "onClick: "+v);
+                    FcmNotificationSender notificationSender=new FcmNotificationSender(dataClassList.get(position).getToken(), "Book App","Someone like your post",context);
+                    notificationSender.sendNotifications();
+                    FirebaseDatabase.getInstance().getReference().child("Likes").child(dataClassList.get(holder.getAdapterPosition()).getKey())
+                            .child(auth.getUid()).setValue(true);
+                }else {
+                    FirebaseDatabase.getInstance().getReference().child("Likes").child(dataClassList.get(holder.getAdapterPosition()).getKey())
+                            .child(auth.getUid()).removeValue();
+                }
+
+
+            }
+        });
+
 
     }
-
-//    private void openImagePickerForResult(ActivityResultLauncher<Intent> launcher) {
-//        Intent intent = new Intent(Intent.ACTION_PICK);
-//        intent.setType("image/*");
-//        launcher.launch(intent);
-//    }
-
 
 
     @Override
@@ -227,8 +249,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        ImageView recImage,com;
-        TextView recName, recDesc;
+        ImageView recImage,com,ImageLike;
+        TextView recName, recDesc,like;
         CardView recCard;
         Button btnAd, btnDelete;
         CircleImageView circleImageView;
@@ -244,25 +266,51 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             btnDelete = itemView.findViewById(R.id.btnDell);
             circleImageView=itemView.findViewById(R.id.editImage);
             com=itemView.findViewById(R.id.Comment);
+            like=itemView.findViewById(R.id.likesPost);
+            ImageLike=itemView.findViewById(R.id.like);
 
-
-
-
-//            activityResultLauncher = context.registerForActivityResult(
-//                    new ActivityResultContracts.StartActivityForResult(),
-//                    new ActivityResultCallback<ActivityResult>() {
-//                        @Override
-//                        public void onActivityResult(ActivityResult result) {
-//                            if (result.getResultCode() == Activity.RESULT_OK) {
-//                                Intent data = result.getData();
-//                                Uri uri = data.getData();
-//                                circleImageView.setImageURI(uri);
-//                                selectedImageUri = uri;
-//                            } else {
-//                                Toast.makeText(context, "No Image Selected", Toast.LENGTH_SHORT).show();
-//                            }
                         }
                     }
+
+
+    private  void isLike(String postId,ImageView imageView){
+        FirebaseUser firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference reference=FirebaseDatabase.getInstance().getReference().child("Likes").child(postId);
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.child(firebaseUser.getUid()).exists()){
+                    imageView.setImageResource(R.drawable.ic_liked);
+                    imageView.setTag("liked");
+
+                }else {
+                    imageView.setImageResource(R.drawable.baseline_favorite_border_24);
+                    imageView.setTag("like");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    private void noLike(TextView like,String postId){
+        DatabaseReference reference=FirebaseDatabase.getInstance().getReference().child("Likes").child(postId);
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                like.setText(snapshot.getChildrenCount()+"likes");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 
 
     public void getComments(String postId,ImageView comments){
