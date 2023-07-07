@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 for (DataSnapshot itemsSnap:snapshot.getChildren()){
                     DataModel dataClass=itemsSnap.getValue(DataModel.class);
                     //   dataClass.setDataDesc(itemsSnap.getKey());
+                    Log.d("dataaa",dataClass.toString());
                     dataClassList.add(dataClass);
                 }
                 adapter.notifyDataSetChanged();

@@ -202,9 +202,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             @Override
             public void onClick(View v) {
                 //this code is pass the activity and data from the model
+                Log.d("vaaaa",dataClassList.get(position).getPublishBY());
                 Intent intent=new Intent(context, CommentaActivity.class);
                 intent.putExtra("postId",dataClassList.get(holder.getAdapterPosition()).getKey());
-                intent.putExtra("publisherby",dataClassList.get(holder.getAdapterPosition()).getToken());
+                intent.putExtra("publishedBy",dataClassList.get(position).getPublishBY());
                 context.startActivity(intent);
             }
         });

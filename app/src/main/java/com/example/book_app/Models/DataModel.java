@@ -73,4 +73,16 @@ public class DataModel {
     public void setToken(String token) {
         this.token = token;
     }
+
+    @Override
+    public String toString() {
+        return "DataModel{" +
+                "dataImage='" + dataImage + '\'' +
+                ", dataName='" + dataName + '\'' +
+                ", dataDesc='" + dataDesc + '\'' +
+                ", publishBY='" + publishBY + '\'' +
+                ", Key='" + Key + '\'' +
+                ", token='" + token + '\'' +
+                '}';
+    }
 }

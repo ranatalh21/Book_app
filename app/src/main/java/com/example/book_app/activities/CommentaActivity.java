@@ -43,6 +43,8 @@ public class CommentaActivity extends AppCompatActivity {
 
     String commentRef;
 
+    String token;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +76,7 @@ public class CommentaActivity extends AppCompatActivity {
         Intent intent = getIntent();
         postId = intent.getStringExtra("postId");
         publishedBy = intent.getStringExtra("publishedBy");
-
+        Log.d("aadsd",publishedBy);
         readComment();
 
         // Click listener for the post button
@@ -88,6 +90,24 @@ public class CommentaActivity extends AppCompatActivity {
                 }
             }
         });
+
+        getTokenOfUser();
+    }
+
+    private void getTokenOfUser() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users").child(publishedBy).child("token");
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                token = snapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     private void addComment() {
@@ -132,7 +152,8 @@ public class CommentaActivity extends AppCompatActivity {
     }
 
     private void sendCommentNotification() {
-        FcmNotificationSender notificationSender = new FcmNotificationSender(publishedBy, "New Comment", "Someone commented on your post", getApplicationContext());
+        Log.d("tokenvalue",token);
+        FcmNotificationSender notificationSender = new FcmNotificationSender(token, "New Comment", "Someone commented on your post", getApplicationContext());
         notificationSender.sendNotifications();
     }
 }
