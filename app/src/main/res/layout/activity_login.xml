@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        tools:context=".activities.LoginActivity">
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:padding="20dp"
+            >
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:gravity="center"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-black"
+                android:textColor="#283a5a"/>
+
+
+            <EditText
+                android:id="@+id/txtName"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="40dp"
+                android:drawableStart="@drawable/baseline_alternate_email_24"
+                android:drawableLeft="@drawable/baseline_alternate_email_24"
+                android:drawablePadding="5dp"
+                android:gravity="start|center_vertical"
+                android:hint="Email"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:inputType="textWebPassword"
+                    android:id="@+id/txtPas"
+                    android:drawableStart="@drawable/baseline_lock_24"
+                    android:drawableLeft="@drawable/baseline_lock_24"
+                    android:drawablePadding="5dp"
+                    android:textSize="16sp"
+                    android:layout_marginTop="20dp"
+                    android:padding="10dp"
+                    android:hint="Password"
+                    android:gravity="start|center_vertical"
+                    android:textColor="@color/black"
+                    />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="27dp"
+                    android:layout_marginLeft="-50dp"
+                    android:layout_marginTop="30dp"
+                    android:id="@+id/image_show_hide_icon"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Forgot Password"
+                android:textSize="15sp"
+                android:id="@+id/forgot"
+                android:gravity="end"
+                android:fontFamily="sans-serif-black"
+                android:textColor="#0065ff"/>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Login"
+                android:id="@+id/btnLogin"
+                android:textSize="18sp"
+                android:backgroundTint="#0065ff"
+                android:background="@drawable/lavender_boarder"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                />
+
+
+            <ProgressBar
+                android:id="@+id/progressBarLog"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textColor="#323335"
+                android:layout_gravity="center"
+                android:text="Login with"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+
+
+                <ImageView
+                    android:id="@+id/facebook"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/facebook" />
+
+                <ImageView
+                    android:id="@+id/google"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/google" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/txtRegister"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:textColor="#323335"
+                    android:text="New to logistics?"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/txtReg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="30dp"
+                    android:text="Register"
+                    android:textColor="#0065ff"
+                    android:textSize="24sp"
+                    android:fontFamily="serif" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/banner_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+        </LinearLayout>
+
+    </ScrollView>

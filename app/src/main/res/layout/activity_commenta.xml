@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <com.google.android.material.card.MaterialCardView
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/white"
+        android:background="@drawable/lavender_boarder"
+        style="@style/myCardView"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".activities.CommentaActivity"
+        xmlns:tools="http://schemas.android.com/tools">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            >
+
+
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/back"
+                android:id="@+id/backBtnPress"
+                android:layout_marginStart="10dp"/>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/backBtnPress"
+                android:id="@+id/recylerComments"/>
+
+
+
+            <EditText
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:id="@+id/userPostComments"
+                android:drawableStart="@drawable/baseline_description_24"
+                android:drawableLeft="@drawable/baseline_description_24"
+                android:drawablePadding="5dp"
+                android:layout_alignParentBottom="true"
+                android:inputType="text"
+                android:hint="Name"
+                android:textColor="#323335"/>
+
+
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/userPostComments"
+                android:src="@drawable/baseline_arrow_upward_24"
+                android:layout_marginBottom="20dp"
+                android:id="@+id/uplaodComments"
+                />
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+

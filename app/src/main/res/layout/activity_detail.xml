@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+    tools:context=".DetailActivity">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/back"
+                android:id="@+id/backPress"
+                android:layout_marginStart="10dp"/>
+
+
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:id="@+id/detailImage"
+                android:padding="8dp"
+                android:layout_gravity="center"
+                android:src="@drawable/uplod"
+                android:scaleType="fitXY"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="20dp"
+                android:text="Name"
+                android:layout_gravity="center"
+                android:textSize="18sp"
+                android:textColor="@color/teal_200"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Name"
+                android:layout_gravity="center"
+                android:id="@+id/detailName"
+                android:textSize="22sp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="20dp"
+                android:text="Description"
+                android:layout_gravity="center"
+                android:textSize="18sp"
+                android:textColor="@color/teal_200"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Description"
+                android:layout_gravity="center"
+                android:id="@+id/detailDesc"
+                android:textSize="22sp"
+                android:textColor="#323335"/>
+
+
+
+
+
+
+
+        </LinearLayout>
+    </ScrollView>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="Edit Data"
+        android:gravity="center"
+        android:textColor="#283a5a"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/editImage"
+        android:layout_width="150dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:src="@drawable/uplod" />
+
+    <EditText
+        android:id="@+id/EditName"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:drawableStart="@drawable/baseline_description_24"
+        android:drawableLeft="@drawable/baseline_description_24"
+        android:drawablePadding="5dp"
+        android:gravity="start|center_vertical"
+        android:hint="Book name"
+        android:inputType="text"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+
+    <EditText
+        android:id="@+id/EditDesc"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:drawableStart="@drawable/baseline_description_24"
+        android:drawableLeft="@drawable/baseline_description_24"
+        android:drawablePadding="5dp"
+        android:gravity="start|center_vertical"
+        android:hint="Description"
+        android:inputType="text"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/UpdateButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/lavender_boarder"
+        android:backgroundTint="#0065ff"
+        android:text="Update"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+</LinearLayout>
